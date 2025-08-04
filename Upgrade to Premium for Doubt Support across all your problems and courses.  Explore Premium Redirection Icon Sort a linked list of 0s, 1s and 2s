@@ -1,0 +1,54 @@
+/*  Node is defined as
+  struct Node {
+    int data;
+    struct Node *next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};*/
+class Solution {
+  public:
+    Node* segregate(Node* head) {
+        // code here
+        Node* temp = head;
+        int cnt_0=0,cnt_1=0,cnt_2=0;
+        while (temp)
+        {
+            if (temp->data == 0)
+            {
+                cnt_0++;
+            }
+            if (temp->data == 1)
+            {
+                cnt_1++;
+            }
+            if (temp->data == 2)
+            {
+                cnt_2++;
+            }
+            temp=temp->next;
+        }
+        temp = head;
+        while (temp && cnt_0>0)
+        {
+            temp->data = 0;
+            temp=temp->next;
+            cnt_0--;
+        }
+        while (temp && cnt_1>0)
+        {
+            temp->data = 1;
+            temp=temp->next;
+            cnt_1--;
+        }
+        while (temp && cnt_2>0)
+        {
+            temp->data = 2;
+            temp=temp->next;
+            cnt_2--;
+        }
+        return head;
+        
+    }
+};
